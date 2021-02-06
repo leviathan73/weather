@@ -1,0 +1,15 @@
+{
+  "name": "backend_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "weather_backend.js",
+  "scripts": {
+    "start": "node weather_backend.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1"
+  }
+}
