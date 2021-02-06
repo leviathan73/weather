@@ -3,10 +3,49 @@ body {
   margin: 0;
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+* {
+  box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  
 }
 .container {
   background: rgb(255, 255, 255);
   border: 1px solid rgb(144, 144, 144);
-  width: 850px;
-  height: 950px;
+  width: 550px;
+
+  display: grid;
+  row-gap: 3px;
+  column-gap: 3px;
+  grid-template-rows: 32px 126px;
+  grid-template-columns: 128px auto 64px;
 }
+
+input {
+  border: 0;
+  border-bottom: 3px solid gray;
+  padding: 4px;
+  box-shadow: none;
+  outline: 0;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  margin: 3px;
+}
+button {
+  margin: 3px;
+}
+input:focus {
+  border-bottom: 3px solid red;
+}
+.information {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  display: flex;
+  flex-wrap: wrap;
+}
+.information > div {
+  width: 50%;
+  padding: 10px;
+  }
