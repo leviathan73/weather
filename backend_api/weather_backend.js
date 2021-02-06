@@ -1,8 +1,15 @@
 const express = require("express")
 const axios = require("axios")
+const cors = require("cors")
 
 const server = express()
 const port = 3000
+
+
+server.use(cors({
+	origin: "*",
+	optionsSuccessStatus: 200
+}))
 
 server.get('/weather', function (req, res) {
 	const options = {
