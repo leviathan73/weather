@@ -1,6 +1,12 @@
 body {
-  background: rgb(194, 194, 194);
+  background: url(https://cdn3.vectorstock.com/i/1000x1000/10/57/seamless-grid-pattern-notebook-paper-sheet-vector-21521057.jpg);
+  margin: 0;
+  display: flex;
+  justify-content: center;
 }
 .container {
   background: rgb(255, 255, 255);
+  border: 1px solid rgb(144, 144, 144);
+  width: 850px;
+  height: 950px;
 }
