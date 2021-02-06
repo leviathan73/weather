@@ -5,7 +5,6 @@ const cors = require("cors")
 const server = express()
 const port = 3000
 
-
 server.use(cors({
 	origin: "*",
 	optionsSuccessStatus: 200
@@ -31,27 +30,19 @@ server.get('/weather', function (req, res) {
 		}
 	};
 
-	axios.request(options).then(function (response) {
-		res.send(response.data)
-		console.log(response.data);
-	}).catch(function (error) {
-		console.error(error);
-	});
-
-})
+	axios.request(options)
+		.then(function (response) {
+			res.send(JSON.stringify(response.data));
+			console.log(response.data);
+		})
+		.catch(function (error) {
+			console.error(error);
+		});
+});
 
 server.listen(port, () => {
-	console.log(`Example app listening at http://localhost:${port}`)
-})
-
-
-
-
-
-
-
-
-
+	console.log(`Example app listening at http://localhost:${port}`);
+});
 
 // test({
 // 	"coord": {
