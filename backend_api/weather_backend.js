@@ -1,31 +1,49 @@
+const express = require("express")
 const axios = require("axios")
 
-// import axios from "axios";
+const server = express()
+const port = 3000
 
-const options = {
-	method: 'GET',
-	url: 'https://community-open-weather-map.p.rapidapi.com/weather',
-	params: {
-		q: 'Wroclaw',
-		lat: '0',
-		lon: '0',
-		callback: 'test',
-		id: '2172797',
-		lang: 'null',
-		units: 'metric',
-		mode: 'xml, html'
-	},
-	headers: {
-		'x-rapidapi-key': '60569ea851mshd6fd42aa4b40958p15bc52jsn8c8786a941e3',
-		'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com'
-	}
-};
+server.get('/weather', function (req, res) {
+	const options = {
+		method: 'GET',
+		url: 'https://community-open-weather-map.p.rapidapi.com/weather',
+		params: {
+			q: 'Wroclaw',
+			lat: '0',
+			lon: '0',
+			// callback: 'test',
+			id: '2172797',
+			lang: 'null',
+			units: 'metric',
+			mode: 'xml, html'
+		},
+		headers: {
+			'x-rapidapi-key': '60569ea851mshd6fd42aa4b40958p15bc52jsn8c8786a941e3',
+			'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com'
+		}
+	};
 
-axios.request(options).then(function (response) {
-	console.log(response.data);
-}).catch(function (error) {
-	console.error(error);
-});
+	axios.request(options).then(function (response) {
+		res.send(response.data)
+		console.log(response.data);
+	}).catch(function (error) {
+		console.error(error);
+	});
+
+})
+
+server.listen(port, () => {
+	console.log(`Example app listening at http://localhost:${port}`)
+})
+
+
+
+
+
+
+
+
 
 
 // test({
