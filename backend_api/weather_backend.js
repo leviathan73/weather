@@ -10,7 +10,7 @@ logger.level = "all"
 logger.debug(process.env)
 const server = express()
 const port = 3000 || process.env.npm_package_config_port
-const delay = 0 || process.env.npm_package_config_delay
+const delay = 0 //|| process.env.npm_package_config_delay
 
 server.use(cors({
 	origin: "*",
@@ -41,12 +41,13 @@ server.get('/weather', function (req, res) {
 		.then(function (response) {
 			setTimeout(() => {
 				res.send({
-					temperature: response.data.main.temp,
-					wilgotnosc: "0,7",
-					zachod: "22:20",
-					wschod: "06:20",
-					wiatr: "12 km/h",
-					kierunekwiatru: "północny",
+					temperature: response.data.main.temp + "C",
+					wilgotnosc: response.data.main.humidity + "%",
+					zachod: moment(response.data.sys.sunrise).format("HH:MM"),
+					wschod: moment(response.data.sys.sunset).format("HH:MM"),
+					wiatr: response.data.wind.speed + "km/h",
+					kierunekwiatru: response.data.wind.deg,
+					ikony: response.data.weather[0].main.toLowerCase()
 				});
 			}, delay);
 			logger.info(`Weather api response time ${moment().diff(start, 'ms')} ms. `);
