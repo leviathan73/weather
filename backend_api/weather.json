@@ -1,0 +1,11 @@
+{
+	ikona: "",
+	temp: "",
+	wilg: "",
+	wschod: "",
+	zachod: "",
+	wiatr: {
+		predkosc: "",
+		kierunek: ""
+	}
+}
