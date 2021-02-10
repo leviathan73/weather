@@ -1,9 +1,16 @@
 const express = require("express")
 const axios = require("axios")
 const cors = require("cors")
+const log4js = require("log4js");
+const logger = log4js.getLogger();
 
+const moment = require('moment')
+
+logger.level = "all"
+logger.debug(process.env)
 const server = express()
-const port = 3000
+const port = 3000 || process.env.npm_package_config_port
+const delay = 0 || process.env.npm_package_config_delay
 
 server.use(cors({
 	origin: "*",
@@ -16,7 +23,7 @@ server.get('/weather', function (req, res) {
 		method: 'GET',
 		url: 'https://community-open-weather-map.p.rapidapi.com/weather',
 		params: {
-			q: 'Wroclaw',
+			q: req.query.q,
 			lat: '0',
 			lon: '0',
 			// callback: 'test',
@@ -30,60 +37,28 @@ server.get('/weather', function (req, res) {
 			'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com'
 		}
 	};
-
+	var start = moment();
 	axios.request(options)
 		.then(function (response) {
-			res.send(JSON.stringify(response.data));
-			console.log(response.data);
-			console.log("end processing fetch .....");
+			setTimeout(() => {
+				res.send({
+					temperature: response.data.main.temp,
+					wilgotnosc: "0,7",
+					zachod: "22:20",
+					wschod: "06:20",
+					wiatr: "12 km/h",
+					kierunekwiatru: "północny",
+				});
+			}, delay);
+			logger.info(`Weather api response time ${moment().diff(start, 'ms')} ms. `);
+			logger.info(response.data);
 		})
 		.catch(function (error) {
-			console.error(error);
+			logger.error(error);
 		});
 
 });
 
 server.listen(port, () => {
-	console.log(`Example app listening at http://localhost:${port}`);
+	logger.info(`Example app listening at http://localhost:${port}`);
 });
-
-// test({
-// 	"coord": {
-// 		"lon": -0.13,
-// 		"lat": 51.51
-// 	},
-// 	"weather": [{
-// 		"id": 741,
-// 		"main": "Fog",
-// 		"description": "fog",
-// 		"icon": "50n"
-// 	}],
-// 	"base": "stations",
-// 	"main": {
-// 		"temp": 284.04,
-// 		"pressure": 1011,
-// 		"humidity": 93,
-// 		"tempmin": 280.93,
-// 		"tempmax": 287.04
-// 	},
-// 	"visibility": 10000,
-// 	"wind": {
-// 		"speed": 1.5
-// 	},
-// 	"clouds": {
-// 		"all": 20
-// 	},
-// 	"dt": 1570234102,
-// 	"sys": {
-// 		"type": 1,
-// 		"id": 1417,
-// 		"message": 0.0102,
-// 		"country": "GB",
-// 		"sunrise": 1570255614,
-// 		"sunset": 1570296659
-// 	},
-// 	"timezone": 3600,
-// 	"id": 2643743,
-// 	"name": "London",
-// 	"cod": 200
-// })

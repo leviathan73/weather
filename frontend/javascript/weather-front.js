@@ -1,13 +1,14 @@
-function pogoda(temp, wilg, zach, wsch, wiatr, kierWiatr) {
+function pogoda(temp, wilg, zach, wsch, wiatr, kierWiatr,icons) {
   tempe.innerText = temp;
   wil.innerText = wilg;
   zacho.innerText = zach;
   wscho.innerText = wsch;
   wiadr.innerText = wiatr;
   kieruneg.innerText = kierWiatr;
+  ikonga.innerHTML = icons;
 }
-pogoda(12, 0.7, "22:20", "12:20", "12 km/h", "Północny");
-let promise = fetch("javascript/weather.json");
+function pobierzDane() {
+let promise = fetch(`http://localhost:3000/weather?q=${loc.value}`);
 promise
   .then(function (response) {
     console.log(response);
@@ -16,11 +17,14 @@ promise
   })
   .then(function (jsun) {
     pogoda(
-      jsun.temperatura,
+      jsun.temperature,
       jsun.wilgotnosc,
       jsun.zachod,
-      jsun.wchod,
+      jsun.wschod,
       jsun.wiatr,
       jsun.kierunekwiatru
+      jsun.ikony
     );
   });
+	
+}
