@@ -43,8 +43,8 @@ server.get('/weather', function (req, res) {
 				res.send({
 					temperature: response.data.main.temp + "C",
 					wilgotnosc: response.data.main.humidity + "%",
-					zachod: moment(response.data.sys.sunrise).format("HH:MM"),
-					wschod: moment(response.data.sys.sunset).format("HH:MM"),
+					zachod: moment(response.data.sys.sunset * 1000, "x").format("HH:MM"),
+					wschod: moment(response.data.sys.sunrise * 1000, "x").format("HH:MM"),
 					wiatr: response.data.wind.speed + "km/h",
 					kierunekwiatru: response.data.wind.deg,
 					ikony: response.data.weather[0].main.toLowerCase()
