@@ -11,6 +11,7 @@ server.use(cors({
 }))
 
 server.get('/weather', function (req, res) {
+	console.log("start processing fetch .....");
 	const options = {
 		method: 'GET',
 		url: 'https://community-open-weather-map.p.rapidapi.com/weather',
@@ -34,10 +35,12 @@ server.get('/weather', function (req, res) {
 		.then(function (response) {
 			res.send(JSON.stringify(response.data));
 			console.log(response.data);
+			console.log("end processing fetch .....");
 		})
 		.catch(function (error) {
 			console.error(error);
 		});
+
 });
 
 server.listen(port, () => {

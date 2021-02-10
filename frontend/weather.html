@@ -6,43 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather</title>
     <link rel="stylesheet" href="css/style.css" />
-    <script src="javascript/weather-front.js"></script>
+    <script src="javascript/weather-front.js" defer></script>
   </head>
   <body>
     <div class="container">
       <input type="text" name="country" placeholder="Search for city" />
       <button type="submit">OK</button>
-      <img src="icon.jpg" alt="Weather icon" />
+      <img src="" alt="Weather icon" />
       <div class="information">
         <div>
           <div>
             <span class="temperature">Temperature:</span>
-            <span>___</span>
+            <span id="tempe">___</span>
           </div>
           <div>
             <span class="humidity">Humidity:</span>
-            <span>___</span>
+            <span id="wil">___</span>
           </div>
         </div>
         <div>
           <div>
             <span class="sunset">Sunset:</span>
-            <span>___</span>
+            <span id="zacho">___</span>
           </div>
           <div>
             <span class="sunrise">Sunrise:</span>
-            <span>___</span>
+            <span id="wscho">___</span>
           </div>
         </div>
         <div>
-      <div>
-        <span class="wind">Wind:</span>
-        <span>___</span>
-      </div>
-         <div>
-        <span class="wind-direction">Direction:</span>
-        <span>___</span>
-      </div>
+          <div>
+            <span class="wind">Wind:</span>
+            <span id="wiadr">___</span>
+          </div>
+          <div>
+            <span class="wind-direction">Direction:</span>
+            <span id="kieruneg">___</span>
+          </div>
+        </div>
       </div>
     </div>
   </body>
