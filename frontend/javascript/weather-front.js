@@ -5,8 +5,14 @@ function pogoda(temp, wilg, zach, wsch, wiatr, kierWiatr,icons) {
   wscho.innerText = wsch;
   wiadr.innerText = wiatr;
   kieruneg.innerText = kierWiatr;
-  ikonga.innerHTML = icons;
+  ikonga.src = icons;
 }
+function pobierzDane2(event) {
+	// console.log(event)
+	if (event.key == "Enter") {
+		pobierzDane();
+	}
+} 
 function pobierzDane() {
 let promise = fetch(`http://localhost:3000/weather?q=${loc.value}`);
 promise
@@ -22,7 +28,7 @@ promise
       jsun.zachod,
       jsun.wschod,
       jsun.wiatr,
-      jsun.kierunekwiatru
+      jsun.kierunekwiatru,
       jsun.ikony
     );
   });
